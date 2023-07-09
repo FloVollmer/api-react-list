@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { waitFor } from '@testing-library/dom';
 import App from './App';
   
-  const mockEntries = { entries: [ { 
+  const mockEntries = { entries: [ {
     API: 'API1',
     Description: 'Description1',
     Link: 'Link1' 
@@ -24,10 +24,12 @@ describe('Render tests', () => {
     global.fetch.mockRestore();
   });
 
-  test('renders title', () => {
+  test('renders title', async () => {
     render(<App />);
     const linkElement = screen.getByText(/Entries/i);
-    expect(linkElement).toBeInTheDocument();
+    await waitFor(() => {
+      expect(linkElement).toBeInTheDocument();
+    });
   });
 
   test('renders App with entries', async () => {
