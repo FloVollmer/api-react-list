@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './App.css';
 
 const App = () => {
   const [entries, setEntries] = useState([]);
@@ -30,7 +31,7 @@ const App = () => {
         </thead>
         <tbody>
           {entries.map((entry, index) => (
-            <tr key={index}>
+            <tr key={index} className={index%2 ? 'uneven' : 'even'}>
               <td>{entry.API}</td>
               <td>{entry.Description}</td>
               <td ><a href={entry.Link}>{entry.Link}</a></td>
